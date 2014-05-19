@@ -6,3 +6,5 @@ A 2D/3D spatial hash using nanoflann useful for quick nearest neighbor calculati
 Allows for an all-in-one approach to spatially indexing existing point clouds for rapid 2D/3D search.
 
 Inspired by https://github.com/neilmendoza/ofxNearestNeighbour/ and others.
+
+See class documentation and examples for more information.
