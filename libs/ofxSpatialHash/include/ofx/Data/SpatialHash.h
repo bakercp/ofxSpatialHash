@@ -119,7 +119,7 @@ public:
     /// \param point The seed point to search near.
     /// \param numPointsToFind the number of points to return.
     /// \param indices A collection of point indices for the nearby points.
-    /// \param indices A collection of the point distances squared.
+    /// \param distancesSquared A collection of the point distances squared.
     void findNClosestPoints(const VectorType& point,
                             std::size_t numPointsToFind,
                             Indicies& indices,
@@ -174,10 +174,10 @@ public:
     /// \param point The seed point to search near.
     /// \param radius The radius to search within.
     /// \param results A collection of point indices for the nearby points.
-    /// \param eps The epsilon used for calculating distance equality.
+    /// \param epsilon The epsilon used for calculating distance equality.
     /// \param sorted True iff the the output list should be returned sorted
     ///        by ascending distances.
-    /// \param returns The number of points discovered within the search radius.
+    /// \returns The number of points discovered within the search radius.
     std::size_t findPointsWithinRadius(const VectorType& point,
                                        FloatType radius,
                                        SearchResults& results,
@@ -211,9 +211,9 @@ public:
     ///
     /// \param pVector a pointer to the 0th element of a vector.
     /// \param index The index of a vector in our referenced point cloud.
-    /// \param size The number of dimensions in our VectorType.
+    /// \param dim The number of dimensions in our VectorType.
     /// \returns The accumulated Euclidean distance between two vectors.
-    inline FloatType kdtree_distance(const FloatType* pSearchVector,
+    inline FloatType kdtree_distance(const FloatType* pVector,
                                      const std::size_t index,
                                      const std::size_t dim) const
     {
@@ -221,7 +221,7 @@ public:
 
         for (std::size_t i = 0; i < dim; ++i)
         {
-            const FloatType distance = pSearchVector[i] - _points[index][i];
+            const FloatType distance = pVector[i] - _points[index][i];
 
             total += (distance * distance);
         }
@@ -250,7 +250,7 @@ public:
     ///
     /// \tparam BoundingBox The bounding box type to fill.
     /// \param boundingBox The bounding box type container to fill.
-    /// \bool returns true if a valid bounding box was returned.
+    /// \returns true if a valid bounding box was returned.
     template <class BoundingBox>
     bool kdtree_get_bbox(BoundingBox& boundingBox) const
     {
