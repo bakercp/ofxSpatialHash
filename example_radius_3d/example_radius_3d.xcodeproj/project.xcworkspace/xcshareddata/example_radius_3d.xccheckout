@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>IDESourceControlProjectFavoriteDictionaryKey</key>
+	<false/>
+	<key>IDESourceControlProjectIdentifier</key>
+	<string>CDE78F70-3FC0-4390-9FF6-476F1FAD505D</string>
+	<key>IDESourceControlProjectName</key>
+	<string>example_radius_3d</string>
+	<key>IDESourceControlProjectOriginsDictionary</key>
+	<dict>
+		<key>45B414AD-06FD-4497-9C7A-E1A33FADFECF</key>
+		<string>ssh://github.com/bakercp/openFrameworks.git</string>
+		<key>E9A41D41-8A3A-4FA8-A900-596D2CC6AECA</key>
+		<string>ssh://github.com/bakercp/ofxSpatialHash.git</string>
+	</dict>
+	<key>IDESourceControlProjectPath</key>
+	<string>addons/ofxSpatialHash/example_radius_3d/example_radius_3d.xcodeproj/project.xcworkspace</string>
+	<key>IDESourceControlProjectRelativeInstallPathDictionary</key>
+	<dict>
+		<key>45B414AD-06FD-4497-9C7A-E1A33FADFECF</key>
+		<string>../../../../..</string>
+		<key>E9A41D41-8A3A-4FA8-A900-596D2CC6AECA</key>
+		<string>../../..</string>
+	</dict>
+	<key>IDESourceControlProjectURL</key>
+	<string>ssh://github.com/bakercp/ofxSpatialHash.git</string>
+	<key>IDESourceControlProjectVersion</key>
+	<integer>110</integer>
+	<key>IDESourceControlProjectWCCIdentifier</key>
+	<string>45B414AD-06FD-4497-9C7A-E1A33FADFECF</string>
+	<key>IDESourceControlProjectWCConfigurations</key>
+	<array>
+		<dict>
+			<key>IDESourceControlRepositoryExtensionIdentifierKey</key>
+			<string>public.vcs.git</string>
+			<key>IDESourceControlWCCIdentifierKey</key>
+			<string>E9A41D41-8A3A-4FA8-A900-596D2CC6AECA</string>
+			<key>IDESourceControlWCCName</key>
+			<string>ofxSpatialHash</string>
+		</dict>
+		<dict>
+			<key>IDESourceControlRepositoryExtensionIdentifierKey</key>
+			<string>public.vcs.git</string>
+			<key>IDESourceControlWCCIdentifierKey</key>
+			<string>45B414AD-06FD-4497-9C7A-E1A33FADFECF</string>
+			<key>IDESourceControlWCCName</key>
+			<string>openFrameworks</string>
+		</dict>
+	</array>
+</dict>
+</plist>
