@@ -84,6 +84,8 @@ public:
     /// memory and reduced computational speed.  The optimal value can be found
     /// by experiment.  See the nanoflann documentaion for benchmarks and tips.
     ///
+    /// \warning Ensure that the referenced points are initialized prior to
+    ///          the construction of the SpatialHash.
     /// \param points A const reference to a std::vector or VectorType.
     /// \param maxLeafSize The maximum leaf size.
     /// \param autoBuildIndex Automatically build the index during construction.
