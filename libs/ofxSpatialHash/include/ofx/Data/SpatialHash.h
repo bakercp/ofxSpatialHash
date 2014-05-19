@@ -27,7 +27,6 @@
 
 
 #include "nanoflann.hpp"
-#include "ofTypes.h"
 
 
 namespace ofx {
