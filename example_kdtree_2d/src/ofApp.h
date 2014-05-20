@@ -30,9 +30,6 @@
 #include "ofxSpatialHash.h"
 
 
-using namespace ofx;
-
-
 class ofApp: public ofBaseApp
 {
 public:
@@ -57,10 +54,10 @@ public:
     std::vector<ofVec2f> points;
 
     /// \brief The spatial hash specialized for ofVec2f.
-    Data::KDTree<ofVec2f> hash;
+    ofx::KDTree<ofVec2f> hash;
 
     /// \brief The search results specialized for ofVec2f.
-    Data::KDTree<ofVec2f>::SearchResults searchResults;
+    ofx::KDTree<ofVec2f>::SearchResults searchResults;
 
     /// \brief The current mouse position.
     ofVec2f mouse;

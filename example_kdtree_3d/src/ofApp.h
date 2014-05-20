@@ -30,9 +30,6 @@
 #include "ofxSpatialHash.h"
 
 
-using namespace ofx;
-
-
 class ofApp: public ofBaseApp
 {
 public:
@@ -57,10 +54,10 @@ public:
     std::vector<ofVec3f> points;
 
     /// \brief The spatial hash specialized for ofVec3f.
-    Data::KDTree<ofVec3f> hash;
+    ofx::KDTree<ofVec3f> hash;
 
     /// \brief The search results specialized for ofVec3f.
-    Data::KDTree<ofVec3f>::SearchResults searchResults;
+    ofx::KDTree<ofVec3f>::SearchResults searchResults;
 
     /// \brief A little firefly that moves around the 3D space.
     ofVec3f firefly;

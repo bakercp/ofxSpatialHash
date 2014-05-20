@@ -60,7 +60,7 @@
 
 /* Begin PBXFileReference section */
 		19c22cd05d10f78b32ff80c6be3a9385 /* ofApp.cpp */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.cpp; fileEncoding = 30; name = ofApp.cpp; path = src/ofApp.cpp; sourceTree = SOURCE_ROOT; };
-		71c82e6740892ee1474acfe6e5e0b9f3 /* KDTree.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; fileEncoding = 30; name = KDTree.h; path = ../../../addons/ofxSpatialHash/libs/ofxSpatialHash/include/ofx/Data/KDTree.h; sourceTree = SOURCE_ROOT; };
+		3fcc3cc63f1fb03fa5a6c417e8e9d111 /* KDTree.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; fileEncoding = 30; name = KDTree.h; path = ../../../addons/ofxSpatialHash/libs/ofxSpatialHash/include/ofx/KDTree.h; sourceTree = SOURCE_ROOT; };
 		84f6287fa54b66c746947875f6690182 /* ofApp.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; fileEncoding = 30; name = ofApp.h; path = src/ofApp.h; sourceTree = SOURCE_ROOT; };
 		BBAB23BE13894E4700AA2426 /* GLUT.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = GLUT.framework; path = ../../../libs/glut/lib/osx/GLUT.framework; sourceTree = "<group>"; };
 		E4328143138ABC890047C5CB /* openFrameworksLib.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = openFrameworksLib.xcodeproj; path = ../../../libs/openFrameworksCompiled/project/osx/openFrameworksLib.xcodeproj; sourceTree = SOURCE_ROOT; };
@@ -117,7 +117,7 @@
 		0593f71a6c41bcbcd91d9c0c0522315b /* ofx */ = {
 			isa = PBXGroup;
 			children = (
-				3e5b8b86156aef0421e74048e9274b73 /* Data */,
+				3fcc3cc63f1fb03fa5a6c417e8e9d111 /* KDTree.h */,
 			);
 			name = ofx;
 			sourceTree = "<group>";
@@ -128,14 +128,6 @@
 				c7741f5222ea5255dd6710edf2a38c23 /* ofxSpatialHash.h */,
 			);
 			name = src;
-			sourceTree = "<group>";
-		};
-		3e5b8b86156aef0421e74048e9274b73 /* Data */ = {
-			isa = PBXGroup;
-			children = (
-				71c82e6740892ee1474acfe6e5e0b9f3 /* KDTree.h */,
-			);
-			name = Data;
 			sourceTree = "<group>";
 		};
 		6c9af35f1a9916752055a0f3b8655795 /* libs */ = {
@@ -406,7 +398,6 @@
 					../../../addons/ofxSpatialHash/libs/ofxSpatialHash,
 					../../../addons/ofxSpatialHash/libs/ofxSpatialHash/include,
 					../../../addons/ofxSpatialHash/libs/ofxSpatialHash/include/ofx,
-					../../../addons/ofxSpatialHash/libs/ofxSpatialHash/include/ofx/Data,
 					../../../addons/ofxSpatialHash/libs/ofxSpatialHash/src,
 					../../../addons/ofxSpatialHash/src,
 				);
@@ -450,7 +441,6 @@
 					../../../addons/ofxSpatialHash/libs/ofxSpatialHash,
 					../../../addons/ofxSpatialHash/libs/ofxSpatialHash/include,
 					../../../addons/ofxSpatialHash/libs/ofxSpatialHash/include/ofx,
-					../../../addons/ofxSpatialHash/libs/ofxSpatialHash/include/ofx/Data,
 					../../../addons/ofxSpatialHash/libs/ofxSpatialHash/src,
 					../../../addons/ofxSpatialHash/src,
 				);
