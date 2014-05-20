@@ -30,7 +30,6 @@
 
 
 namespace ofx {
-namespace Data {
 
 
 /// \brief A KDTree optimized for 2D/3D point clouds.
@@ -280,4 +279,4 @@ protected:
 };
 
 
-} } // namespace ofx::Data
+} // namespace ofx

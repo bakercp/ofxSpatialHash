@@ -24,4 +24,4 @@
 
 
 #include "nanoflann.hpp"
-#include "ofx/Data/KDTree.h"
+#include "ofx/KDTree.h"
