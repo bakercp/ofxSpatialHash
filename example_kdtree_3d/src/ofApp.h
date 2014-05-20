@@ -41,28 +41,50 @@ public:
     void update();
     void draw();
 
+    void keyPressed(int key);
+
+    /// \brief A collection of default values.
     enum
     {
         NUM_POINTS = 10000,
         DEFAULT_RADIUS = 200, // vector units (pixels)
+        DEFAULT_NEAREST_N = 200
     };
 
-    // NOTE: your points must be initialized before creating your hash.
+    /// \brief Our point collection.
+    ///
+    /// These points MUST be initialized BEFORE initing the hash.
     std::vector<ofVec3f> points;
-    
-    Data::SpatialHash<ofVec3f> hash;
-    
-    Data::SpatialHash<ofVec3f>::SearchResults radiusResults;
 
-    int radius;
+    /// \brief The spatial hash specialized for ofVec3f.
+    Data::KDTree<ofVec3f> hash;
 
+    /// \brief The search results specialized for ofVec3f.
+    Data::KDTree<ofVec3f>::SearchResults searchResults;
+
+    /// \brief A little firefly that moves around the 3D space.
     ofVec3f firefly;
 
+    /// \brief The camera.
     ofEasyCam cam;
 
-    float noiseStep;
-    float noiseMagnitude;
-
+    /// \brief A mesh to make it easier to draw lots of points.
     ofMesh mesh;
+
+    /// \brief The search modes in this example.
+    enum Modes
+    {
+        MODE_RADIUS,
+        MODE_NEAREST_N
+    };
+
+    /// \brief The current search mode.
+    int mode;
+
+    /// \brief Radius used for radius search.
+    int radius;
+
+    /// \brief Number of nearest neighbors to use for Nearest Nieghbor search.
+    int nearestN;
 
 };

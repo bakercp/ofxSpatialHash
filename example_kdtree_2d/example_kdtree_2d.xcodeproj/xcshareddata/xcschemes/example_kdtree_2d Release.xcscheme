@@ -15,9 +15,9 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "E4B69B5A0A3A1756003C02F2"
-               BuildableName = "example_radius_2d.app"
-               BlueprintName = "example_radius_2d"
-               ReferencedContainer = "container:example_radius_2d.xcodeproj">
+               BuildableName = "example_kdtree_2d.app"
+               BlueprintName = "example_kdtree_2d"
+               ReferencedContainer = "container:example_kdtree_2d.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
       </BuildActionEntries>
@@ -33,9 +33,9 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "E4B69B5A0A3A1756003C02F2"
-            BuildableName = "example_radius_2d.app"
-            BlueprintName = "example_radius_2d"
-            ReferencedContainer = "container:example_radius_2d.xcodeproj">
+            BuildableName = "example_kdtree_2d.app"
+            BlueprintName = "example_kdtree_2d"
+            ReferencedContainer = "container:example_kdtree_2d.xcodeproj">
          </BuildableReference>
       </MacroExpansion>
    </TestAction>
@@ -52,9 +52,9 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "E4B69B5A0A3A1756003C02F2"
-            BuildableName = "example_radius_2d.app"
-            BlueprintName = "example_radius_2d"
-            ReferencedContainer = "container:example_radius_2d.xcodeproj">
+            BuildableName = "example_kdtree_2d.app"
+            BlueprintName = "example_kdtree_2d"
+            ReferencedContainer = "container:example_kdtree_2d.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
       <AdditionalOptions>
@@ -70,9 +70,9 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "E4B69B5A0A3A1756003C02F2"
-            BuildableName = "example_radius_2d.app"
-            BlueprintName = "example_radius_2d"
-            ReferencedContainer = "container:example_radius_2d.xcodeproj">
+            BuildableName = "example_kdtree_2d.app"
+            BlueprintName = "example_kdtree_2d"
+            ReferencedContainer = "container:example_kdtree_2d.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
    </ProfileAction>

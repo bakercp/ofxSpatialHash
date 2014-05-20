@@ -24,5 +24,4 @@
 
 
 #include "nanoflann.hpp"
-#include "ofx/Data/SpatialHash.h"
-
+#include "ofx/Data/KDTree.h"

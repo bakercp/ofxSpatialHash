@@ -33,12 +33,12 @@ namespace ofx {
 namespace Data {
 
 
-/// \brief A SpatialHash is a wrapper for a KDTree and is optimized for 2D/3D.
-/// \tparam VectorType The internal VectorType used by this SpatialHash.
-/// \tparam FloatType The internal floating point type used by this SpatialHash.
-/// \tparam IndexType The internal index type used by this SpatialHash.
+/// \brief A KDTree optimized for 2D/3D point clouds.
+/// \tparam VectorType The internal VectorType used by this KDTree.
+/// \tparam FloatType The internal floating point type used by this KDTree.
+/// \tparam IndexType The internal index type used by this KDTree.
 template<typename VectorType, typename FloatType = float, typename IndexType = std::size_t>
-class SpatialHash
+class KDTree
 {
 public:
     /// \brief A typedef for a vector of points.
@@ -61,23 +61,23 @@ public:
     /// This SimpleAdapter calculates euclidian distances and is appropriate for
     /// low dimensional datasets, particularly 2D and 3D.
     typedef nanoflann::L2_Simple_Adaptor<FloatType,
-                                         SpatialHash<VectorType, FloatType>,
+                                         KDTree<VectorType, FloatType>,
                                          FloatType> L2_Adapter;
 
     /// \brief A typedef for a KDTreeSingleIndexAdaptor index adapter.
     typedef nanoflann::KDTreeSingleIndexAdaptor<L2_Adapter,
-                                                SpatialHash<VectorType, FloatType>,
+                                                KDTree<VectorType, FloatType>,
                                                 VectorType::DIM,
-                                                IndexType> KDTree;
+                                                IndexType> KDTreeAdapter;
 
     /// \brief A typedef for a KDTreeSingleIndexAdaptorParams.
     typedef nanoflann::KDTreeSingleIndexAdaptorParams KDTreeParams;
 
     /// \brief Create a spatial hash with a reference to a vector or points.
     ///
-    /// Users should initialize the SpatialHash with a const reference to a
+    /// Users should initialize the KDTree with a const reference to a
     /// std::vector of the user's VectorType.  If the contents of this
-    /// std::vector change, the SpatialHash index must be rebuild using the
+    /// std::vector change, the KDTree index must be rebuild using the
     /// buildIndex() method, otherwise, search results will be invalid.
     ///
     /// The maximum leaf size must should be chosen to strike a balance between
@@ -85,12 +85,12 @@ public:
     /// by experiment.  See the nanoflann documentaion for benchmarks and tips.
     ///
     /// \warning Ensure that the referenced points are initialized prior to
-    ///          the construction of the SpatialHash.
+    ///          the construction of the KDTree.
     /// \param points A const reference to a std::vector or VectorType.
     /// \param maxLeafSize The maximum leaf size.
     /// \param autoBuildIndex Automatically build the index during construction.
-    SpatialHash(const std::vector<VectorType>& points,
-                std::size_t maxLeafSize = DEFAULT_MAX_LEAF_SIZE,
+    KDTree(const std::vector<VectorType>& points,
+           std::size_t maxLeafSize = DEFAULT_MAX_LEAF_SIZE,
                 bool autoBuildIndex = true):
         _points(points),
         _KDTree(VectorType::DIM,
@@ -103,8 +103,8 @@ public:
         }
     }
 
-    /// \brief Destroy the SpatialHash.
-    virtual ~SpatialHash()
+    /// \brief Destroy the KDTree.
+    virtual ~KDTree()
     {
     }
 
@@ -127,7 +127,8 @@ public:
                             DistancesSquared& distancesSquared)
     {
         // Ensure reasonable parameters.
-        numPointsToFind = std::min(numPointsToFind, _points.size());
+        numPointsToFind = std::min(_points.size(), numPointsToFind);
+        numPointsToFind = std::max((std::size_t)1, numPointsToFind);
 
         indices.resize(numPointsToFind);
         distancesSquared.resize(numPointsToFind);
@@ -149,27 +150,31 @@ public:
                             std::size_t numPointsToFind,
                             SearchResults& results)
     {
+        // Ensure reasonable parameters.
+        numPointsToFind = std::min(_points.size(), numPointsToFind);
+        numPointsToFind = std::max((std::size_t)1, numPointsToFind);
+
         Indicies indices;
         DistancesSquared distancesSquared;
 
         indices.resize(numPointsToFind);
         distancesSquared.resize(numPointsToFind);
 
-        results.resize(numPointsToFind);
-
         findNClosestPoints(point, numPointsToFind, indices, distancesSquared);
+
+        results.resize(numPointsToFind);
 
         // Copy the results
         for (std::size_t i = 0; i < numPointsToFind; ++i)
         {
-            results.push_back(std::make_pair(indices[i], distancesSquared[i]));
+            results[i] = std::make_pair(indices[i], distancesSquared[i]);
         }
     }
 
     /// \brief Find the all points within a radius of the given point.
     ///
     /// For best results, the memory in the passed results std::vector should be
-    /// preallocated using .reserve() or .resize() in order to prevent
+    /// preallocated using .resize() in order to prevent
     /// std::vector resizes during the search process.
     ///
     /// \param point The seed point to search near.
@@ -270,7 +275,7 @@ protected:
     const std::vector<VectorType>& _points;
 
     /// \brief The KDTree structure.
-    KDTree _KDTree;
+    KDTreeAdapter _KDTree;
 
 };
 
