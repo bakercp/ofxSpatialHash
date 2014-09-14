@@ -90,7 +90,7 @@ public:
     /// \param autoBuildIndex Automatically build the index during construction.
     KDTree(const std::vector<VectorType>& points,
            std::size_t maxLeafSize = DEFAULT_MAX_LEAF_SIZE,
-                bool autoBuildIndex = true):
+           bool autoBuildIndex = true):
         _points(points),
         _KDTree(VectorType::DIM,
                 *this,
@@ -194,7 +194,7 @@ public:
         params.sorted = sorted;
         
         return _KDTree.radiusSearch(point.getPtr(),
-                                    radius * radius,
+                                    radius* radius,
                                     results,
                                     params);
     }
