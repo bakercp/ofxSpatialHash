@@ -44,7 +44,7 @@ public:
     typedef std::vector<VectorType> Points;
 
     /// \brief A typedef for a vector of point indicies.
-    typedef std::vector<IndexType>  Indicies;
+    typedef std::vector<IndexType> Indicies;
 
     /// \brief A typedef for a vector of distances squared.
     typedef std::vector<FloatType> DistancesSquared;
