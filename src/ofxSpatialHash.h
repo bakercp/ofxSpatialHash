@@ -23,5 +23,8 @@
 // =============================================================================
 
 
+#pragma once
+
+
 #include "nanoflann.hpp"
 #include "ofx/KDTree.h"
