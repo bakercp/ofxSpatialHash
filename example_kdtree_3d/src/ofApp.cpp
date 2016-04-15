@@ -58,8 +58,6 @@ void ofApp::setup()
 void ofApp::update()
 {
     // Random walk.
-    int delta = 50;
-
     float time = ofGetElapsedTimef() / 10;
 
     firefly.x = ofMap(ofNoise(time +   0), 0, 1, -500, ofGetWidth() + 500);
