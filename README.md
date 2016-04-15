@@ -11,5 +11,5 @@ Inspired by https://github.com/neilmendoza/ofxNearestNeighbour/ and others.
 
 See class documentation and examples for more information.
 
-![2D Hash](https://github.com/bakercp/ofxIpVideoGrabber/raw/master/docs/screen_2d.png)
-![3D Hash](https://github.com/bakercp/ofxIpVideoGrabber/raw/master/docs/screen_3d.png)
+![2D Hash](https://github.com/bakercp/ofxSpatialHash/raw/master/docs/screen_2d.png)
+![3D Hash](https://github.com/bakercp/ofxSpatialHash/raw/master/docs/screen_3d.png)
