@@ -1,7 +1,17 @@
 docs/html
 docs/tagfile.xml
+docs/*.tag
 
 raw/
+
+Project.xcconfig
+*.xcodeproj
+*.plist
+
+*.sln
+*.vcxproj
+*.vcxproj.filters
+icon.rc
 
 *.mode1v3
 
