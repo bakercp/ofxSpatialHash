@@ -31,7 +31,6 @@ ofApp::ofApp():
     mode(MODE_RADIUS),
     radius(DEFAULT_RADIUS),
     nearestN(DEFAULT_NEAREST_N)
-    
 {
 }
 
@@ -101,12 +100,12 @@ void ofApp::draw()
 
         ofSetColor(255, 255, 0, normalizedDistance * 127);
 
-        ofCircle(points[searchResults[i].first], 5);
+        ofDrawCircle(points[searchResults[i].first], 5);
 
         if (points[searchResults[i].first].x == 0 || points[searchResults[i].first].y == 0)
         {
 
-            std::cout << points[searchResults[i].first] << " i =" << i << " dist=" << searchResults[i].second << std::endl;
+            std::cout << points[searchResults[i].first] << " i = " << i << " dist= " << searchResults[i].second << std::endl;
         }
 
         if (MODE_NEAREST_N == mode)
@@ -120,7 +119,7 @@ void ofApp::draw()
     {
         ofNoFill();
         ofSetColor(255, 127);//, 0, 0, 50);
-        ofCircle(mouse, radius);
+        ofDrawCircle(mouse, radius);
     }
 
     std::stringstream ss;

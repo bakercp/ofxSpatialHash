@@ -76,12 +76,12 @@ public:
     };
 
     /// \brief The current search mode.
-    int mode;
+    int mode = 0;
 
     /// \brief Radius used for radius search.
-    int radius;
+    int radius = 0;
 
     /// \brief Number of nearest neighbors to use for Nearest Nieghbor search.
-    int nearestN;
+    int nearestN = 0;
 
 };
