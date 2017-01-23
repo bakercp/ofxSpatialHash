@@ -29,5 +29,5 @@
 int main()
 {
     ofSetupOpenGL(1280, 768, OF_WINDOW);
-    ofRunApp(std::make_shared<ofApp>());
+    return ofRunApp(std::make_shared<ofApp>());
 }
