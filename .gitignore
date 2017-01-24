@@ -4,9 +4,12 @@ docs/*.tag
 
 raw/
 
-Project.xcconfig
-*.xcodeproj
-*.plist
+exampl*/.compiler*
+exampl*/config.make
+exampl*/Makefile
+exampl*/Project.xcconfig
+exampl*/*.xcodeproj
+exampl*/*.plist
 
 *.sln
 *.vcxproj
