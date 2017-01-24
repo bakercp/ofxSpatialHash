@@ -27,13 +27,13 @@ template <>
 struct VectorTypeHelper<ofVec4f> { static const int DIM = ofVec4f::DIM; };
 
 template <>
-struct VectorTypeHelper<glm::vec2> { static const int DIM = glm::vec2::components; };
+struct VectorTypeHelper<glm::vec2> { static const int DIM = 2; }; //glm::vec2::components; };
 
 template <>
-struct VectorTypeHelper<glm::vec3> { static const int DIM = glm::vec3::components; };
+struct VectorTypeHelper<glm::vec3> { static const int DIM = 3; }; //glm::vec2::components; };
 
 template <>
-struct VectorTypeHelper<glm::vec4> { static const int DIM = glm::vec4::components; };
+struct VectorTypeHelper<glm::vec4> { static const int DIM = 4; }; //glm::vec4::components; };
 
 
 /// \brief A KDTree optimized for 2D/3D point clouds.
