@@ -33,16 +33,16 @@ public:
     /// \brief Our point collection.
     ///
     /// These points MUST be initialized BEFORE initing the hash.
-    std::vector<ofVec3f> points;
+    std::vector<glm::vec3> points;
 
     /// \brief The spatial hash specialized for ofVec3f.
-    ofx::KDTree<ofVec3f> hash;
+    ofx::KDTree<glm::vec3> hash;
 
     /// \brief The search results specialized for ofVec3f.
-    ofx::KDTree<ofVec3f>::SearchResults searchResults;
+    ofx::KDTree<glm::vec3>::SearchResults searchResults;
 
     /// \brief A little firefly that moves around the 3D space.
-    ofVec3f firefly;
+    glm::vec3 firefly;
 
     /// \brief The camera.
     ofEasyCam cam;

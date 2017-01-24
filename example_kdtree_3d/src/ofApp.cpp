@@ -23,16 +23,17 @@ void ofApp::setup()
     ofEnableDepthTest();
 
     mesh.setMode(OF_PRIMITIVE_POINTS);
+    
     for (std::size_t i = 0; i < NUM_POINTS; ++i)
     {
-        ofVec3f point(ofRandomWidth(), ofRandomHeight(), ofRandom(-500, 500));
+        glm::vec3 point(ofRandomWidth(), ofRandomHeight(), ofRandom(-500, 500));
         points.push_back(point);
         mesh.addVertex(point);
     }
 
     hash.buildIndex();
 
-    firefly = ofVec3f(ofGetWidth() / 2, ofGetHeight() / 2, 0);
+    firefly = glm::vec3(ofGetWidth() / 2, ofGetHeight() / 2, 0);
 
 }
 
@@ -140,7 +141,7 @@ void ofApp::draw()
         ss << "    NEAREST N (-/=): " << nearestN;
     }
 
-    ofDrawBitmapStringHighlight(ss.str(), ofVec2f(30, 30));
+    ofDrawBitmapStringHighlight(ss.str(), glm::vec2(30, 30));
 }
 
 

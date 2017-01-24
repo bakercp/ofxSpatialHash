@@ -33,16 +33,16 @@ public:
     /// \brief Our point collection.
     ///
     /// These points MUST be initialized BEFORE initing the hash.
-    std::vector<ofVec2f> points;
+    std::vector<glm::vec2> points;
 
-    /// \brief The spatial hash specialized for ofVec2f.
-    ofx::KDTree<ofVec2f> hash;
+    /// \brief The spatial hash specialized for glm::vec2.
+    ofx::KDTree<glm::vec2> hash;
 
-    /// \brief The search results specialized for ofVec2f.
-    ofx::KDTree<ofVec2f>::SearchResults searchResults;
+    /// \brief The search results specialized for glm::vec2.
+    ofx::KDTree<glm::vec2>::SearchResults searchResults;
 
     /// \brief The current mouse position.
-    ofVec2f mouse;
+    glm::vec2 mouse;
 
     /// \brief A mesh to make it easier to draw lots of points.
     ofMesh mesh;

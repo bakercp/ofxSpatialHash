@@ -14,11 +14,37 @@
 namespace ofx {
 
 
+template <typename VectorType>
+struct VectorTypeHelper { static const int DIM = -1; };
+
+template <>
+struct VectorTypeHelper<ofVec2f> { static const int DIM = ofVec2f::DIM; };
+
+template <>
+struct VectorTypeHelper<ofVec3f> { static const int DIM = ofVec3f::DIM; };
+
+template <>
+struct VectorTypeHelper<ofVec4f> { static const int DIM = ofVec4f::DIM; };
+
+template <>
+struct VectorTypeHelper<glm::vec2> { static const int DIM = glm::vec2::components; };
+
+template <>
+struct VectorTypeHelper<glm::vec3> { static const int DIM = glm::vec3::components; };
+
+template <>
+struct VectorTypeHelper<glm::vec4> { static const int DIM = glm::vec4::components; };
+
+
 /// \brief A KDTree optimized for 2D/3D point clouds.
 /// \tparam VectorType The internal VectorType used by this KDTree.
+/// \tparam VectorDimension The number of dimensions in the VectorType used by this KDTree.
 /// \tparam FloatType The internal floating point type used by this KDTree.
 /// \tparam IndexType The internal index type used by this KDTree.
-template<typename VectorType, typename FloatType = float, typename IndexType = std::size_t>
+template<typename VectorType,
+         int VectorDimension = VectorTypeHelper<VectorType>::DIM,
+         typename FloatType = float,
+         typename IndexType = std::size_t>
 class KDTree
 {
 public:
@@ -42,13 +68,13 @@ public:
     /// This SimpleAdapter calculates euclidian distances and is appropriate for
     /// low dimensional datasets, particularly 2D and 3D.
     typedef nanoflann::L2_Simple_Adaptor<FloatType,
-                                         KDTree<VectorType, FloatType>,
+                                         KDTree<VectorType, VectorDimension, FloatType, IndexType>,
                                          FloatType> L2_Adapter;
 
     /// \brief A typedef for a KDTreeSingleIndexAdaptor index adapter.
     typedef nanoflann::KDTreeSingleIndexAdaptor<L2_Adapter,
-                                                KDTree<VectorType, FloatType>,
-                                                VectorType::DIM,
+                                                KDTree<VectorType, VectorDimension, FloatType, IndexType>,
+                                                VectorDimension,
                                                 IndexType> KDTreeAdapter;
 
     /// \brief A typedef for a KDTreeSingleIndexAdaptorParams.
@@ -70,11 +96,11 @@ public:
     /// \param points A const reference to a std::vector or VectorType.
     /// \param maxLeafSize The maximum leaf size.
     /// \param autoBuildIndex Automatically build the index during construction.
-    KDTree(const std::vector<VectorType>& points,
+    KDTree(const Points& points,
            std::size_t maxLeafSize = DEFAULT_MAX_LEAF_SIZE,
            bool autoBuildIndex = true):
         _points(points),
-        _KDTree(VectorType::DIM,
+        _KDTree(VectorDimension,
                 *this,
                 KDTreeParams(maxLeafSize))
     {
@@ -109,12 +135,12 @@ public:
     {
         // Ensure reasonable parameters.
         numPointsToFind = std::min(_points.size(), numPointsToFind);
-        numPointsToFind = std::max((std::size_t)1, numPointsToFind);
+        numPointsToFind = std::max(static_cast<std::size_t>(1), numPointsToFind);
 
         indices.resize(numPointsToFind);
         distancesSquared.resize(numPointsToFind);
 
-        _KDTree.knnSearch(point.getPtr(),
+        _KDTree.knnSearch(reinterpret_cast<const FloatType*>(&point.x),
                           numPointsToFind,
                           &indices[0],
                           &distancesSquared[0]);
@@ -133,7 +159,7 @@ public:
     {
         // Ensure reasonable parameters.
         numPointsToFind = std::min(_points.size(), numPointsToFind);
-        numPointsToFind = std::max((std::size_t)1, numPointsToFind);
+        numPointsToFind = std::max(static_cast<std::size_t>(1), numPointsToFind);
 
         Indicies indices;
         DistancesSquared distancesSquared;
@@ -175,7 +201,7 @@ public:
         params.eps = epsilon;
         params.sorted = sorted;
         
-        return _KDTree.radiusSearch(point.getPtr(),
+        return _KDTree.radiusSearch(reinterpret_cast<const FloatType*>(&point.x),
                                     radius* radius,
                                     results,
                                     params);
@@ -224,7 +250,7 @@ public:
     /// \param dimension The dimension (i.e. 0 = x, 1 = y, 2 = z, etc) to get.
     /// \returns the FloatType value from the vector.
     inline FloatType kdtree_get_pt(const std::size_t index,
-                                   int dimension) const
+                                   std::size_t dimension) const
     {
         return _points[index][dimension];
     }
@@ -259,6 +285,10 @@ protected:
     KDTreeAdapter _KDTree;
 
 };
+
+
+//template<typename VectorType, typename FloatType = float, typename IndexType = std::size_t>
+//class KDTree
 
 
 } // namespace ofx
