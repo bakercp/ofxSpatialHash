@@ -31,7 +31,6 @@ Linux, macOS [![Build Status](https://travis-ci.org/bakercp/ofxSpatialHash.svg?b
 
 Visual Studio, MSYS [![Build status](https://ci.appveyor.com/api/projects/status/7s76w2xstibc5w3x/branch/master?svg=true)](https://ci.appveyor.com/project/bakercp/ofxspatialhash/branch/master)
 
-
 ## Compatibility
 
 The `stable` branch of this repository is meant to be compatible with the openFrameworks [stable branch](https://github.com/openframeworks/openFrameworks/tree/stable), which corresponds to the latest official openFrameworks release.
