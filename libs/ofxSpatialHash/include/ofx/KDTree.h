@@ -149,7 +149,7 @@ public:
     /// \brief Find the N closest points to the given point.
     /// \warning This method is a simplification of findNClosestPoints and
     /// involves an extra set of copies and therefore may be somewhat slower.
-    /// It is a comprimize until nanoflann has a more unified search interface.
+    /// It is a compromise until nanoflann has a more unified search interface.
     /// \param point The seed point to search near.
     /// \param numPointsToFind the number of points to return.
     /// \param results A collection of point indices for the nearby points.
@@ -171,7 +171,7 @@ public:
 
         results.resize(numPointsToFind);
 
-        // Copy the results
+        // Copy the results.
         for (std::size_t i = 0; i < numPointsToFind; ++i)
         {
             results[i] = std::make_pair(indices[i], distancesSquared[i]);
@@ -200,7 +200,7 @@ public:
         nanoflann::SearchParams params;
         params.eps = epsilon;
         params.sorted = sorted;
-        
+
         return _KDTree.radiusSearch(reinterpret_cast<const FloatType*>(&point.x),
                                     radius* radius,
                                     results,
@@ -265,7 +265,7 @@ public:
     /// \param boundingBox The bounding box type container to fill.
     /// \returns true if a valid bounding box was returned.
     template <class BoundingBox>
-    bool kdtree_get_bbox(BoundingBox& boundingBox) const
+    bool kdtree_get_bbox(BoundingBox&) const
     {
         return false;
     }
@@ -285,10 +285,6 @@ protected:
     KDTreeAdapter _KDTree;
 
 };
-
-
-//template<typename VectorType, typename FloatType = float, typename IndexType = std::size_t>
-//class KDTree
 
 
 } // namespace ofx
