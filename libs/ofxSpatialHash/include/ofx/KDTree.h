@@ -9,6 +9,7 @@
 
 
 #include "nanoflann.hpp"
+#include <array>
 
 
 namespace ofx {
@@ -35,6 +36,8 @@ struct VectorTypeHelper<glm::vec3> { static const int DIM = 3; }; //glm::vec2::c
 template <>
 struct VectorTypeHelper<glm::vec4> { static const int DIM = 4; }; //glm::vec4::components; };
 
+template <typename FloatType, std::size_t N>
+struct VectorTypeHelper<std::array<FloatType, N>> { static const int DIM = N; };
 
 /// \brief A KDTree optimized for 2D/3D point clouds.
 /// \tparam VectorType The internal VectorType used by this KDTree.
@@ -140,7 +143,7 @@ public:
         indices.resize(numPointsToFind);
         distancesSquared.resize(numPointsToFind);
 
-        _KDTree.knnSearch(reinterpret_cast<const FloatType*>(&point.x),
+        _KDTree.knnSearch(reinterpret_cast<const FloatType*>(&point[0]),
                           numPointsToFind,
                           &indices[0],
                           &distancesSquared[0]);
@@ -201,7 +204,7 @@ public:
         params.eps = epsilon;
         params.sorted = sorted;
 
-        return _KDTree.radiusSearch(reinterpret_cast<const FloatType*>(&point.x),
+        return _KDTree.radiusSearch(reinterpret_cast<const FloatType*>(&point[0]),
                                     radius* radius,
                                     results,
                                     params);
