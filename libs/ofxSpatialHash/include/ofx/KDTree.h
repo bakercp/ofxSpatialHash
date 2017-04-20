@@ -10,34 +10,62 @@
 
 #include "nanoflann.hpp"
 #include <array>
+#include "ofVec2f.h"
+#include "ofVec3f.h"
+#include "ofVec4f.h"
 
 
 namespace ofx {
 
 
+/// \brief Helpers for getting data pointer.
+template <typename VectorType, typename FloatType>
+const FloatType* VectorDataPointer(const VectorType& v) { return v.data(); }
+
+template <>
+inline const float* VectorDataPointer(const ofVec2f& v) { return v.getPtr(); }
+
+template <>
+inline const float* VectorDataPointer(const ofVec3f& v) { return v.getPtr(); }
+
+template <>
+inline const float* VectorDataPointer(const ofVec4f& v) { return v.getPtr(); }
+
+template <>
+inline const float* VectorDataPointer(const glm::vec2& v) { return &v[0]; }
+
+template <>
+inline const float* VectorDataPointer(const glm::vec3& v) { return &v[0]; }
+
+template <>
+inline const float* VectorDataPointer(const glm::vec4& v) { return &v[0]; }
+
+
+/// \brief Helpers for getting data vector dimensions.
 template <typename VectorType>
-struct VectorTypeHelper { static const int DIM = -1; };
+struct VectorDataDim { static const int DIM = -1; };
 
 template <>
-struct VectorTypeHelper<ofVec2f> { static const int DIM = ofVec2f::DIM; };
+struct VectorDataDim<ofVec2f> { static const int DIM = ofVec2f::DIM; };
 
 template <>
-struct VectorTypeHelper<ofVec3f> { static const int DIM = ofVec3f::DIM; };
+struct VectorDataDim<ofVec3f> { static const int DIM = ofVec3f::DIM; };
 
 template <>
-struct VectorTypeHelper<ofVec4f> { static const int DIM = ofVec4f::DIM; };
+struct VectorDataDim<ofVec4f> { static const int DIM = ofVec4f::DIM; };
 
 template <>
-struct VectorTypeHelper<glm::vec2> { static const int DIM = 2; }; //glm::vec2::components; };
+struct VectorDataDim<glm::vec2> { static const int DIM = glm::vec2::components; };
 
 template <>
-struct VectorTypeHelper<glm::vec3> { static const int DIM = 3; }; //glm::vec2::components; };
+struct VectorDataDim<glm::vec3> { static const int DIM = glm::vec3::components; };
 
 template <>
-struct VectorTypeHelper<glm::vec4> { static const int DIM = 4; }; //glm::vec4::components; };
+struct VectorDataDim<glm::vec4> { static const int DIM = glm::vec4::components; };
 
 template <typename FloatType, std::size_t N>
-struct VectorTypeHelper<std::array<FloatType, N>> { static const int DIM = N; };
+struct VectorDataDim<std::array<FloatType, N>> { static const int DIM = N; };
+
 
 /// \brief A KDTree optimized for 2D/3D point clouds.
 /// \tparam VectorType The internal VectorType used by this KDTree.
@@ -45,7 +73,7 @@ struct VectorTypeHelper<std::array<FloatType, N>> { static const int DIM = N; };
 /// \tparam FloatType The internal floating point type used by this KDTree.
 /// \tparam IndexType The internal index type used by this KDTree.
 template<typename VectorType,
-         int VectorDimension = VectorTypeHelper<VectorType>::DIM,
+         int VectorDimension = VectorDataDim<VectorType>::DIM,
          typename FloatType = float,
          typename IndexType = std::size_t>
 class KDTree
@@ -143,7 +171,7 @@ public:
         indices.resize(numPointsToFind);
         distancesSquared.resize(numPointsToFind);
 
-        _KDTree.knnSearch(reinterpret_cast<const FloatType*>(&point[0]),
+        _KDTree.knnSearch(VectorDataPointer<VectorType, FloatType>(point),
                           numPointsToFind,
                           &indices[0],
                           &distancesSquared[0]);
@@ -204,7 +232,7 @@ public:
         params.eps = epsilon;
         params.sorted = sorted;
 
-        return _KDTree.radiusSearch(reinterpret_cast<const FloatType*>(&point[0]),
+        return _KDTree.radiusSearch(VectorDataPointer<VectorType, FloatType>(point),
                                     radius* radius,
                                     results,
                                     params);
