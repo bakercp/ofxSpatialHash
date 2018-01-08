@@ -55,13 +55,13 @@ template <>
 struct VectorDataDim<ofVec4f> { static const int DIM = ofVec4f::DIM; };
 
 template <>
-struct VectorDataDim<glm::vec2> { static const int DIM = glm::vec2::components; };
+struct VectorDataDim<glm::vec2> { static const int DIM = 2; };//glm::vec2::components; };
 
 template <>
-struct VectorDataDim<glm::vec3> { static const int DIM = glm::vec3::components; };
+struct VectorDataDim<glm::vec3> { static const int DIM = 3; };//glm::vec3::components; };
 
 template <>
-struct VectorDataDim<glm::vec4> { static const int DIM = glm::vec4::components; };
+struct VectorDataDim<glm::vec4> { static const int DIM = 4; };//glm::vec4::components; };
 
 template <typename FloatType, std::size_t N>
 struct VectorDataDim<std::array<FloatType, N>> { static const int DIM = N; };
