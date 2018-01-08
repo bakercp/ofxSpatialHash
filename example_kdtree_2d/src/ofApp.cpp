@@ -25,11 +25,11 @@ void ofApp::setup()
 
     for (std::size_t i = 0; i < NUM_POINTS; ++i)
     {
-        glm::vec2 point(ofRandom(50, ofGetWidth() - 50),
-                        ofRandom(50, ofGetHeight() - 50));
+        Vec2 point(ofRandom(50, ofGetWidth() - 50),
+                   ofRandom(50, ofGetHeight() - 50));
 
         points.push_back(point);
-        mesh.addVertex(glm::vec3(point, 0));
+        mesh.addVertex(Vec3(point.x, point.y, 0));
     }
 
     hash.buildIndex();
@@ -38,7 +38,7 @@ void ofApp::setup()
 
 void ofApp::update()
 {
-    mouse = glm::vec2(ofGetMouseX(), ofGetMouseY());
+    mouse = Vec2(ofGetMouseX(), ofGetMouseY());
 
     searchResults.clear();
 
@@ -118,7 +118,7 @@ void ofApp::draw()
         ss << "    NEAREST N (-/=): " << nearestN;
     }
 
-    ofDrawBitmapStringHighlight(ss.str(), glm::vec2(30, 30));
+    ofDrawBitmapStringHighlight(ss.str(), Vec2(30, 30));
 
 }
 

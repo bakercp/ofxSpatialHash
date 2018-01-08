@@ -26,14 +26,14 @@ void ofApp::setup()
     
     for (std::size_t i = 0; i < NUM_POINTS; ++i)
     {
-        glm::vec3 point(ofRandomWidth(), ofRandomHeight(), ofRandom(-500, 500));
+        Vec3 point(ofRandomWidth(), ofRandomHeight(), ofRandom(-500, 500));
         points.push_back(point);
         mesh.addVertex(point);
     }
 
     hash.buildIndex();
 
-    firefly = glm::vec3(ofGetWidth() / 2, ofGetHeight() / 2, 0);
+    firefly = Vec3(ofGetWidth() / 2, ofGetHeight() / 2, 0);
 
 }
 
@@ -141,7 +141,7 @@ void ofApp::draw()
         ss << "    NEAREST N (-/=): " << nearestN;
     }
 
-    ofDrawBitmapStringHighlight(ss.str(), glm::vec2(30, 30));
+    ofDrawBitmapStringHighlight(ss.str(), Vec2(30, 30));
 }
 
 

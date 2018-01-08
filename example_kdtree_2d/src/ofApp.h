@@ -15,6 +15,11 @@
 class ofApp: public ofBaseApp
 {
 public:
+    typedef glm::vec2 Vec2;
+    typedef glm::vec3 Vec3;
+//    typedef ofVec2f Vec2;
+//    typedef ofVec3f Vec3;
+
     ofApp();
     void setup();
     void update();
@@ -33,16 +38,16 @@ public:
     /// \brief Our point collection.
     ///
     /// These points MUST be initialized BEFORE initing the hash.
-    std::vector<glm::vec2> points;
+    std::vector<Vec2> points;
 
     /// \brief The spatial hash specialized for glm::vec2.
-    ofx::KDTree<glm::vec2> hash;
+    ofx::KDTree<Vec2> hash;
 
     /// \brief The search results specialized for glm::vec2.
-    ofx::KDTree<glm::vec2>::SearchResults searchResults;
+    ofx::KDTree<Vec2>::SearchResults searchResults;
 
     /// \brief The current mouse position.
-    glm::vec2 mouse;
+    Vec2 mouse;
 
     /// \brief A mesh to make it easier to draw lots of points.
     ofMesh mesh;
