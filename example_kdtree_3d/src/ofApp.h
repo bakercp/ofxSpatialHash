@@ -15,17 +15,18 @@
 class ofApp: public ofBaseApp
 {
 public:
+    // Choose the vector type.
     typedef glm::vec2 Vec2;
     typedef glm::vec3 Vec3;
-// typedef ofVec2f Vec2;
-// typedef ofVec3f Vec3;
+    // typedef ofVec2f Vec2;
+    // typedef ofVec3f Vec3;
 
     ofApp();
-    void setup();
-    void update();
-    void draw();
+    void setup() override;
+    void update() override;
+    void draw() override;
 
-    void keyPressed(int key);
+    void keyPressed(int key) override;
 
     /// \brief A collection of default values.
     enum
@@ -40,10 +41,10 @@ public:
     /// These points MUST be initialized BEFORE initing the hash.
     std::vector<Vec3> points;
 
-    /// \brief The spatial hash specialized for ofVec3f.
+    /// \brief The spatial hash specialized for Vec3.
     ofx::KDTree<Vec3> hash;
 
-    /// \brief The search results specialized for ofVec3f.
+    /// \brief The search results specialized for Vec3.
     ofx::KDTree<Vec3>::SearchResults searchResults;
 
     /// \brief A little firefly that moves around the 3D space.

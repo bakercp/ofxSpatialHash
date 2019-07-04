@@ -16,11 +16,11 @@ class ofApp: public ofBaseApp
 {
 public:
     ofApp();
-    void setup();
-    void update();
-    void draw();
+    void setup() override;
+    void update() override;
+    void draw() override;
 
-    void keyPressed(int key);
+    void keyPressed(int key) override;
 
     /// \brief A collection of default values.
     enum
@@ -41,10 +41,10 @@ public:
     /// These points MUST be initialized BEFORE initing the hash.
     std::vector<DataType> points;
 
-    /// \brief The spatial hash specialized for ofVec3f.
+    /// \brief The spatial hash specialized for DataType.
     ofx::KDTree<DataType> hash;
 
-    /// \brief The search results specialized for ofVec3f.
+    /// \brief The search results specialized for DataType.
     ofx::KDTree<DataType>::SearchResults searchResults;
 
     /// \brief A little firefly that moves around the NUM_DIMENSIONS space.

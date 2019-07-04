@@ -15,17 +15,18 @@
 class ofApp: public ofBaseApp
 {
 public:
+    // Choose the vector type.
     typedef glm::vec2 Vec2;
     typedef glm::vec3 Vec3;
-//    typedef ofVec2f Vec2;
-//    typedef ofVec3f Vec3;
+    // typedef ofVec2f Vec2;
+    // typedef ofVec3f Vec3;
 
     ofApp();
-    void setup();
-    void update();
-    void draw();
+    void setup() override;
+    void update() override;
+    void draw() override;
 
-    void keyPressed(int key);
+    void keyPressed(int key) override;
 
     /// \brief A collection of default values.
     enum
@@ -40,10 +41,10 @@ public:
     /// These points MUST be initialized BEFORE initing the hash.
     std::vector<Vec2> points;
 
-    /// \brief The spatial hash specialized for glm::vec2.
+    /// \brief The spatial hash specialized for Vec2.
     ofx::KDTree<Vec2> hash;
 
-    /// \brief The search results specialized for glm::vec2.
+    /// \brief The search results specialized for Vec2.
     ofx::KDTree<Vec2>::SearchResults searchResults;
 
     /// \brief The current mouse position.
